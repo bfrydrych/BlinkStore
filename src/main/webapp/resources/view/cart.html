@@ -1,0 +1,21 @@
+<div class="panel pane-primary">
+	<h4>Summary of your shoppings</h4>
+	 <table  ng-show="shoppings.length > 0" class="table table-condensed">
+	 	<thead>
+		 	<tr>
+		 		<th>Item name</th>
+		 		<th>Quantity</th>
+		 	</tr>
+	 	</thead>
+	 	<tbody ng-repeat="shopping in shoppings">
+			<tr>
+				<td>{{shopping.itemName}}</td>
+				<td>{{shopping.quantity}}</td>
+			</tr>
+	 	</tbody>
+	 </table>
+	<div ng-show="shoppings.length == 0">
+		<span class="item">You have not done any shoppings yet</span>
+	<br>
+	</div>
+</div>

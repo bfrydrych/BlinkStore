@@ -1,0 +1,20 @@
+<div class="panel pane-primary">
+	<h4>Your shopping</h4>
+	<form id="outerBuyForm" name="outerBuyForm" >
+			<ng-form name="buyForm" ng-repeat="item in items">
+		        <span>{{item.name}}: </span>
+		        <input id="itemInput" type="number" name="itemInput" ng-init="item.quantityToBuy=0" ng-model="item.quantityToBuy"  min="0" required/>
+		        <button ng-click="addToCart(item)" ng-disabled="outerBuyForm.$invalid" class="btn btn-primary">Add to cart</button>
+	            <span class="error" ng-show="buyForm.itemInput.$error.required || buyForm.itemInput.$error.min">
+		        Enter the valid number, please
+		        </span>
+		        <br>
+			</ng-form>
+			<br>
+			<div>
+		    	<button ng-click="buyItems()" ng-disabled="outerBuyForm.$invalid" class="btn btn-primary">Buy</button>
+		    </div>
+		    <br>
+		    <span class="error" ng-model="errorMessage">{{errorMessage}}</span>
+    </form>
+</div>

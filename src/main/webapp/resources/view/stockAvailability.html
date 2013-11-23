@@ -1,0 +1,17 @@
+<div class="panel pane-primary">
+	 <h4>Currently available in our shop</h4>
+	 <table class="table table-condensed">
+	 	<thead>
+		 	<tr>
+		 		<th>Item name</th>
+		 		<th>Quantity</th>
+		 	</tr>
+	 	</thead>
+	 	<tbody ng-repeat="item in items">
+			<tr>
+				<td>{{item.name}}</td>
+				<td>{{item.available}}</td>
+			</tr>
+	 	</tbody>
+	 </table>
+ </div>

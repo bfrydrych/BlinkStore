@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <script src="js/jasmine.js"></script>
+  
+  <script src="js/jasmine-html.js"></script>
+  <link href="js/jasmine.css" rel="stylesheet">
+
+  <script src="js/angular.js"></script>
+  
+  <script src="js/angular-mocks.js"></script>
+
+  <script src="../../../main/webapp/resources/js/service/services.js"></script>
+  <script src="../../../main/webapp/resources/js/controller/controllers.js"></script>
+  <script src="../../../main/webapp/resources/js/model/model.js"></script>
+  
+  <script src="js/controller/controllers-test.js"></script>
+  <script src="js/service/services-test.js"></script>
+</head>
+<body>
+  <script>
+    var jasmineEnv = jasmine.getEnv(); 
+    jasmineEnv.addReporter(new jasmine.HtmlReporter());
+    jasmineEnv.execute();
+  </script>
+</body>
+</html>

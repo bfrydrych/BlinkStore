@@ -3,20 +3,59 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-
-    <context:component-scan base-package="org.bitbucket.frydrychb" />
+    <context:component-scan base-package="com.blinkstore" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:annotation-driven/> 
     <mvc:default-servlet-handler/>
     
-    
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    
+    <bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">            
+    	<property name="entityManagerFactory" ref="emf" />
+	</bean> 
+    
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="packagesToScan" value="com.bfrydrych" />
+       <property name="jpaVendorAdapter">
+         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      </property>
+      <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+         </props>
+      </property>
+   </bean>
+   
+ 
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+	    <property name="driverClassName" value="org.h2.Driver" />
+	    <!--property name="url" value="jdbc:h2:~/h2/database/test" /-->
+	    <property name="url" value="jdbc:h2:mem:" />
+	    <property name="username" value="sa" />
+	    <property name="password" value="" />
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+    </bean>
+ 
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="emf" />
+   </bean>
+   <tx:annotation-driven />
 </beans>

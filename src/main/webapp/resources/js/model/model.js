@@ -1,4 +1,4 @@
-var factories = angular.module('shop.factories', []);
+var factories = angular.module('BlinkStore.factories', []);
 
 factories.factory('ItemFactory', function ItemFactory() {
 	return {

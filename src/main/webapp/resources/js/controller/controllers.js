@@ -1,4 +1,4 @@
-var module = angular.module('shop.controllers', []);
+var module = angular.module('BlinkStore.controllers', []);
 module.controller('ItemsController', function ItemsController($scope, ItemsService, BuyItemsRequestFactory) {
 
 	$scope.items = [];

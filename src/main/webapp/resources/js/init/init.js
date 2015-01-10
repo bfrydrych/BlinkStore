@@ -1,1 +1,1 @@
-var shopModule = angular.module("shop", ['shop.controllers', 'shop.services', 'shop.factories']);
+var shopModule = angular.module("BlinkStore", ['BlinkStore.controllers', 'BlinkStore.services', 'BlinkStore.factories']);

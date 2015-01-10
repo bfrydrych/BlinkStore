@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="shop">
+<html ng-app="BlinkStore">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="resources/twitterbootstrap/css/bootstrap.css" rel="stylesheet" >
@@ -21,11 +21,11 @@
 		<h2>Online Store</h2>
 	</div>
 	<div class="pageBlock">
-	    <div ng-include="'/shop/resources/view/stockAvailability.html'"></div>
+	    <div ng-include="'/BlinkStore/resources/view/stockAvailability.html'"></div>
 	    <br>
-	    <div ng-include="'/shop/resources/view/cart.html'"></div>
+	    <div ng-include="'/BlinkStore/resources/view/cart.html'"></div>
 	    <br>
-	    <div ng-include="'/shop/resources/view/buy.html'"></div>
+	    <div ng-include="'/BlinkStore/resources/view/buy.html'"></div>
     </div>
 </body>
 </html>

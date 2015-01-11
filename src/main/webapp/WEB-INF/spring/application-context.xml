@@ -16,17 +16,19 @@
     <context:component-scan base-package="com.blinkstore" />
 
 	<security:http use-expressions="true">
-	  <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+	<!-- requires-channel="https"-->
+	  <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="any"/>
 	  <security:form-login />
 	  <security:logout />
+	  <security:csrf/>
 	</security:http>
+	
+	<bean name="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
 	<security:authentication-manager>
 	  <security:authentication-provider>
-	    <security:user-service>
-	      <security:user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
-	      <security:user name="bob" password="bobspassword" authorities="ROLE_USER" />
-	    </security:user-service>
+	  	<!-- security:password-encoder ref="bcryptEncoder"/-->
+	    <security:jdbc-user-service data-source-ref="dataSource"/>
 	  </security:authentication-provider>
 	</security:authentication-manager>
 
@@ -51,7 +53,7 @@
       </property>
       <property name="jpaProperties">
          <props>
-            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            <!-- prop key="hibernate.hbm2ddl.auto">create-drop</prop-->
             <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
          </props>
       </property>
@@ -60,8 +62,8 @@
  
     <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
 	    <property name="driverClassName" value="org.h2.Driver" />
-	    <!--property name="url" value="jdbc:h2:~/h2/database/test" /-->
-	    <property name="url" value="jdbc:h2:mem:" />
+	    <property name="url" value="jdbc:h2:/home/bart/database/test" />
+	    <!-- property name="url" value="jdbc:h2:mem:" /-->
 	    <property name="username" value="sa" />
 	    <property name="password" value="" />
         <property name="testOnBorrow" value="true"/>

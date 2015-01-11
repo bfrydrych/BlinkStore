@@ -17,7 +17,7 @@
 
 	<security:http use-expressions="true">
 	<!-- requires-channel="https"-->
-	  <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="any"/>
+	  <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" requires-channel="https"/>
 	  <security:form-login />
 	  <security:logout />
 	  <security:csrf/>
